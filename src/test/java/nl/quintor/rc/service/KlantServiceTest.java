@@ -1,11 +1,13 @@
 package nl.quintor.rc.service;
 
 import com.google.common.collect.Lists;
+
 import nl.quintor.rc.model.Gebruiker;
 import nl.quintor.rc.model.Klant;
 import nl.quintor.rc.model.Medewerker;
 import nl.quintor.rc.repository.GebruikerRepository;
 import nl.quintor.rc.repository.KlantRepository;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -64,7 +66,8 @@ public class KlantServiceTest {
 
         when(mockGebruikerRepository.getGebruikerByInlognaam(loginnaam)).thenReturn(gebruiker);
 
-        Klant klant = klantService.getKlantByLoginnaam(loginnaam);
+        @SuppressWarnings("unused")
+		Klant klant = klantService.getKlantByLoginnaam(loginnaam);
 
 //        verify(mockGebruikerRepository).getGebruikerByInlognaam(loginnaam);
 //
