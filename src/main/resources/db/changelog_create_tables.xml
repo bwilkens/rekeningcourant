@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="rboere (generated)" id="1404823426564-1">
+        <createTable tableName="klant">
+            <column name="achternaam" type="VARCHAR(255)"/>
+            <column name="bsn" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="geboorteDatum" type="datetime"/>
+            <column name="geslacht" type="VARCHAR(255)"/>
+            <column name="huisnummer" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="huisnummerToevoeging" type="VARCHAR(255)"/>
+            <column name="overlijdensDatum" type="datetime"/>
+            <column name="postcode" type="VARCHAR(255)"/>
+            <column name="straat" type="VARCHAR(255)"/>
+            <column name="telefoonNummer" type="VARCHAR(255)"/>
+            <column name="voorletters" type="VARCHAR(10)"/>
+            <column name="woonplaats" type="VARCHAR(255)"/>
+            <column name="id" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404823426564-2">
+        <createTable tableName="gebruiker">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="loginnaam" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="laatstIngelogd" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404823426564-3">
+        <createTable tableName="klant_rekening">
+            <column name="klantId" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rekeningNummer" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404823426564-4">
+        <createTable tableName="rekening">
+            <column name="rekeningNummer" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="beginDatum" type="datetime"/>
+            <column name="datumGeblokkeerd" type="datetime"/>
+            <column name="eindDatum" type="datetime"/>
+            <column name="redenGeblokkeerd" type="VARCHAR(255)"/>
+            <column name="saldo" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="version" type="bigint" />
+        </createTable>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404823426564-5">
+        <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="klant"/>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404823426564-6">
+        <addForeignKeyConstraint baseColumnNames="rekeningNummer" baseTableName="klant_rekening" constraintName="FK47D0E47A55BFD1CF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="rekeningNummer" referencedTableName="rekening"/>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404823426564-7">
+        <addForeignKeyConstraint baseColumnNames="klantId" baseTableName="klant_rekening" constraintName="FK47D0E47A832673B5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="klant"/>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404823426564-8">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="klant" constraintName="FK45374C626280EBF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="gebruiker"/>
+    </changeSet>
+    <changeSet author="mhoekstra" id="medewerkerGebruiker">
+        <createTable tableName="medewerker">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="medewerkerNummer" type="VARCHAR(16)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="medewerker" constraintName="FK_Gebruiker" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="gebruiker"/>
+    </changeSet>
+    <changeSet author="jkuiper" id="overboeking">
+        <createTable tableName="overboeking">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="vanRekening" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tegenRekening" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="boekdatum" type="datetime"/>
+            <column name="bedrag" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="omschrijving" type="VARCHAR(255)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="vanRekening" baseTableName="overboeking" constraintName="FK_VANREKENING" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="rekeningNummer" referencedTableName="rekening"/>
+    </changeSet>
+    <changeSet id="betaalopdracht" author="rmik">
+        <createTable tableName="BETAALOPDRACHT">
+            <column name="betaalopdrachtId" type="VARCHAR(255)">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="uitvoerdatum" type="datetime"/>
+            <column name="debiteurNaam" type="VARCHAR(255)"/>
+            <column name="debiteurIBAN" type="VARCHAR(255)"/>
+            <column name="debiteurBIC" type="VARCHAR(255)"/>
+            <column name="crediteurNaam" type="VARCHAR(255)"/>
+            <column name="crediteurIBAN" type="VARCHAR(255)"/>
+            <column name="crediteurBIC" type="VARCHAR(255)"/>
+            <column name="bedrag" type="DOUBLE"/>
+            <column name="omschrijving" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

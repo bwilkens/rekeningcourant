@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+    <changeSet author="rboere (generated)" id="1404887229155-1">
+        <loadData encoding="UTF-8" file="db/gebruiker.csv" quotchar="&quot;" separator="," tableName="gebruiker">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="loginnaam" name="loginnaam" type="STRING"/>
+            <column header="password" name="password" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404887229155-2">
+        <loadData encoding="UTF-8" file="db/klant.csv" quotchar="&quot;" separator="," tableName="klant">
+            <column header="achternaam" name="achternaam" type="STRING"/>
+            <column header="bsn" name="bsn" type="NUMERIC"/>
+            <column header="email" name="email" type="STRING"/>
+            <column header="geboorteDatum" name="geboorteDatum"/>
+            <column header="geslacht" name="geslacht" type="STRING"/>
+            <column header="huisnummer" name="huisnummer" type="NUMERIC"/>
+            <column header="huisnummerToevoeging" name="huisnummerToevoeging"/>
+            <column header="overlijdensDatum" name="overlijdensDatum"/>
+            <column header="postcode" name="postcode" type="STRING"/>
+            <column header="straat" name="straat" type="STRING"/>
+            <column header="telefoonNummer" name="telefoonNummer" type="STRING"/>
+            <column header="voorletters" name="voorletters" type="STRING"/>
+            <column header="woonplaats" name="woonplaats" type="STRING"/>
+            <column header="id" name="id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="medewerkers">
+        <loadData encoding="UTF-8" file="db/medewerker.csv" quotchar="&quot;" separator="," tableName="medewerker">
+            <column header="id" name="id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404887229155-4">
+        <loadData encoding="UTF-8" file="db/rekening.csv" quotchar="&quot;" separator="," tableName="rekening">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="beginDatum" name="beginDatum" type="DATE"/>
+            <column header="datumGeblokkeerd" name="datumGeblokkeerd"/>
+            <column header="eindDatum" name="eindDatum"/>
+            <column header="redenGeblokkeerd" name="redenGeblokkeerd"/>
+            <column header="rekeningNummer" name="rekeningNummer" type="STRING"/>
+            <column header="saldo" name="saldo" type="NUMERIC"/>
+            <column header="status" name="status"/>
+            <column header="type" name="type" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="rboere (generated)" id="1404887229155-5">
+        <loadData encoding="UTF-8" file="db/klant_rekening.csv" quotchar="&quot;" separator="," tableName="klant_rekening">
+            <column header="klantId" name="klantId" type="NUMERIC"/>
+            <column header="rekeningNummer" name="rekeningNummer" type="STRING" />
+        </loadData>
+    </changeSet>
+    <changeSet author="psnippen" id="6">
+        <loadData encoding="UTF-8" file="db/overboekingen.csv" quotchar="&quot;" separator="," tableName="overboeking">
+            <column header="klantId" name="klantId" type="NUMERIC"/>
+            <column header="rekeningNummer" name="rekeningNummer" type="STRING" />
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

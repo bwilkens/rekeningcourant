@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.quintor.nl/rc/gebruiker/1.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.quintor.nl/rc/gebruiker/1.0"
+            elementFormDefault="qualified">
+
+    <xsd:complexType name="Gebruiker" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="username" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="password" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="voorletters" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="achternaam" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="geslacht">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="MAN" />
+                        <xsd:enumeration value="VROUW"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="geboortedatum" type="xsd:date" minOccurs="1"/>
+            <xsd:element name="adres" type="Adres" />
+            <xsd:element name="bsn" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="telefoonnummer" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="email" type="Email" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Klant">
+        <xsd:complexContent>
+            <xsd:extension base="Gebruiker">
+                <xsd:sequence>
+                    <xsd:element name="klantnummer" type="xsd:string" minOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="Medewerker">
+        <xsd:complexContent>
+            <xsd:extension base="Gebruiker">
+                <xsd:sequence>
+                    <xsd:element name="medewerkerId" type="xsd:string" minOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Adres">
+        <xsd:sequence>
+            <xsd:element name="straat" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="huisnummer" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="huisnummerToevoeging" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="postcode" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="woonplaats" type="xsd:string" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Email">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

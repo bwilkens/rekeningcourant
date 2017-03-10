@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints
+        xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+        version="2.0">
+    <endpoint
+            name="HelloWorld"
+            implementation="nl.quintor.rc.web.soap.HelloWorldImpl"
+            url-pattern="/hello-ws"/>
+
+    <endpoint
+            name="Klant"
+            implementation="nl.quintor.rc.web.soap.klant.KlantWebServiceImpl"
+            url-pattern="/klant-ws"/>
+</endpoints>

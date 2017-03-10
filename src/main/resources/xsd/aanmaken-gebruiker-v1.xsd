@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.quintor.nl/rc/gebruikeraanmaken/1.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:gbr="http://www.quintor.nl/rc/gebruiker/1.0"
+            targetNamespace="http://www.quintor.nl/rc/gebruikeraanmaken/1.0"
+            elementFormDefault="qualified">
+
+
+    <xsd:import namespace="http://www.quintor.nl/rc/gebruiker/1.0" schemaLocation="gebruiker-v1.xsd"/>
+
+    <xsd:element name="AanmakenGebruikerRequest" type="AanmakenGebruikerRequest"/>
+    <xsd:element name="AanmakenGebruikerResponse" type="AanmakenGebruikerResponse"/>
+    <xsd:element name="AanmakenGebruikerException" type="xsd:string"/>
+    <xsd:complexType name="AanmakenGebruikerRequest">
+        <xsd:sequence>
+            <xsd:element name="username" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="voorletters" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="achternaam" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="geslacht">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="MAN" />
+                        <xsd:enumeration value="VROUW"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="geboortedatum" type="xsd:date" minOccurs="1"/>
+            <xsd:element name="adres" type="gbr:Adres" minOccurs="1"/>
+            <xsd:element name="bsn" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="telefoonnummer" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="email" type="gbr:Email" minOccurs="1"/>
+            <xsd:element name="rol">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="MEDEWERKER"/>
+                        <xsd:enumeration value="KLANT"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AanmakenGebruikerResponse">
+        <xsd:sequence>
+            <xsd:element name="gebruiker" type="gbr:Gebruiker" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

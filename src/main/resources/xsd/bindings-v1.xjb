@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings 
+	xmlns="http://java.sun.com/xml/ns/jaxb" 
+	xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"	
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:gbr="http://www.quintor.nl/rc/gebruiker/1.0"
+
+	extensionBindingPrefixes="xjc"
+	version="2.0">
+	
+	<bindings schemaLocation="gebruiker-v1.xsd">
+		<schemaBindings>
+			<package name="nl.quintor.rc.web.soap.dto.gebruiker" />
+		</schemaBindings>
+	</bindings>
+
+    <bindings schemaLocation="aanmaken-gebruiker-v1.xsd">
+		<schemaBindings>
+			<package name="nl.quintor.rc.web.soap.dto.aanmakengebruiker" />
+		</schemaBindings>
+	</bindings>
+
+	 <bindings schemaLocation="ophalen-klant-v1.xsd">
+    		<schemaBindings>
+    			<package name="nl.quintor.rc.web.soap.dto.ophalenklant" />
+    		</schemaBindings>
+    	</bindings>
+
+			
+</bindings>
