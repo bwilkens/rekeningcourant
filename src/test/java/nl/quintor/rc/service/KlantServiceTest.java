@@ -81,7 +81,8 @@ public class KlantServiceTest {
 
         when(mockGebruikerRepository.getGebruikerByInlognaam(loginnaam)).thenReturn(gebruiker);
 
-        Klant klant = klantService.getKlantByLoginnaam(loginnaam);
+        @SuppressWarnings("unused")
+		Klant klant = klantService.getKlantByLoginnaam(loginnaam);
 
 //        verify(mockGebruikerRepository).getGebruikerByInlognaam(loginnaam);
 //
