@@ -12,7 +12,7 @@
 
 <html>
 <head>
-    <title>Logback Administration</title>
+    <title>LogTerug Administratie</title>
     <style type="text/css">
 
         <!--
